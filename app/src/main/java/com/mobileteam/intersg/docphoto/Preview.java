@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 public class Preview extends AppCompatActivity {
+
     ImageView img;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +17,7 @@ public class Preview extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
-        //kkk
+
         if(bundle != null)
         {
             int res_id = bundle.getInt("resId");
