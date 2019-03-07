@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DocPhoto</string>
+    <string name="selectCat">Select Your Category to View the Photo</string>
+    <string name="todo">TODO</string>
+    <string name="viewText">View the gallery</string>
+    <string name="receipt">Receipt Doc</string>
+    <string name="d_photo">Take a Photo</string>
+    <string name="t_photo">Photo</string>
+    <string name="rent">Rent Doc</string>
+    <string name="sale">Sale Doc</string>
+</resources>
