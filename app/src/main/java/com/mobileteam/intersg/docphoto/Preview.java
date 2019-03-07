@@ -16,6 +16,7 @@ public class Preview extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
+        //kkk
         if(bundle != null)
         {
             int res_id = bundle.getInt("resId");
