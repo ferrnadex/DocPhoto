@@ -20,6 +20,7 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     ImageView img;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void photo(View view) {
+
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
         startActivityForResult(intent, 0);
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, Preview.class);
 
-        intent.putExtra("resId", bitmap);
+        intent.putExtra("img", bitmap);
 
         startActivity(intent);
 

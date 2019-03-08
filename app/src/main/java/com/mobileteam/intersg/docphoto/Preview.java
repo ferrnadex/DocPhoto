@@ -20,8 +20,8 @@ public class Preview extends AppCompatActivity {
 
         if(bundle != null)
         {
-            int res_id = bundle.getInt("resId");
-            img.setImageResource(res_id);
+            Bitmap imgExtra = (Bitmap) bundle.get("img");
+            img.setImageBitmap(imgExtra);
         }
     }
 
