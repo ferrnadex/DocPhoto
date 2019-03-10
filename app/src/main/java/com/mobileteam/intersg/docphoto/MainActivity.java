@@ -1,30 +1,33 @@
 package com.mobileteam.intersg.docphoto;
 
-import android.app.Activity;
-import android.content.Context;
+
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.provider.MediaStore;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
-import android.view.Surface;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
-
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     ImageView img;
+    CardView cV_1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        cV_1 = findViewById(R.id.sale_doc_card);
+
+        cV_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SaleDocGallery.class);
+                startActivity(intent);
+            }
+        });
 
         //etRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
 

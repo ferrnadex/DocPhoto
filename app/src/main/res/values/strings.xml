@@ -8,4 +8,5 @@
     <string name="t_photo">Photo</string>
     <string name="rent">Rent Doc</string>
     <string name="sale">Sale Doc</string>
+    <string name="seleccionada"> Images Selector </string>
 </resources>
