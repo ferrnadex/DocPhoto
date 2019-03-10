@@ -44,16 +44,25 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // try catch: for prevent the fatal error when the user go back
+        try {
 
-        Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
 
-        Intent intent = new Intent(this, Preview.class);
+            Intent intent = new Intent(this, Preview.class);
 
-        intent.putExtra("img", bitmap);
+            intent.putExtra("img", bitmap);
 
-        startActivity(intent);
+            startActivity(intent);
 
-        //img.setImageBitmap(bitmap);
+            //img.setImageBitmap(bitmap);
+        }
+        catch (Exception e)
+        {
+            // no action
+        }
+
+
     }
 
 }
