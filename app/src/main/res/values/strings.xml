@@ -9,6 +9,6 @@
     <string name="rent">Rent Doc</string>
     <string name="sale">Sale Doc</string>
     <string name="seleccionada"> Images Selector </string>
-    <string name="y">Yes</string>
-    <string name="n">No</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

@@ -53,7 +53,7 @@ public class SaleDocGallery extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                 builder.setMessage("Do you want delete this image?").setTitle("Delete Item");
                 // Add the buttons
-                builder.setPositiveButton(R.string.y, new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int id) {
 
@@ -61,7 +61,7 @@ public class SaleDocGallery extends AppCompatActivity {
 
                     }
                 });
-                builder.setNegativeButton(R.string.n, new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User cancelled the dialog
                     }
