@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Gallery;
 import android.widget.ImageView;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Objects;
 
 public class SaleDocGallery extends AppCompatActivity {
@@ -79,16 +81,15 @@ public class SaleDocGallery extends AppCompatActivity {
         selectedImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                selectedImg.invalidate();
-                BitmapDrawable drawable = (BitmapDrawable) selectedImg.getDrawable();
-                Bitmap bitmap = drawable.getBitmap();
-
-                Intent intent = new Intent(getApplicationContext(), Preview.class);
-
-                intent.putExtra("img", bitmap);
-
+                Drawable drawable= selectedImg.getDrawable();
+                Bitmap bitmap= ((BitmapDrawable)drawable).getBitmap();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+                byte[] b = baos.toByteArray();
+                Intent intent=new Intent(getApplicationContext(),Preview.class);
+                intent.putExtra("picture", b);
                 startActivity(intent);
+
             }
         });
     }
