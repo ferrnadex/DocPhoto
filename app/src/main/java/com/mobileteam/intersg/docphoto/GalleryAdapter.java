@@ -61,7 +61,7 @@ public class GalleryAdapter extends BaseAdapter {
         //como es este ejemplo
         if (ScalableImg.get(position) == null)
         {
-            Bitmap bitmap = decodeSampledBitmapFromResource(context.getResources(), img[position], 120, 0);
+            Bitmap bitmap = decodeSampledBitmapFromResource(context.getResources(), img[position]);
             ScalableImg.put(position, bitmap);
         }
         imagen.setImageBitmap(ScalableImg.get(position));
@@ -71,8 +71,7 @@ public class GalleryAdapter extends BaseAdapter {
         return imagen;
     }
     // reference: https://developer.android.com/topic/performance/graphics/load-bitmap
-    private static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
-                                                         int reqWidth , int reqHeight) {
+    private static Bitmap decodeSampledBitmapFromResource(Resources res, int resId) {
 
         // First decode with inJustDecodeBounds=true to check dimensions
         final BitmapFactory.Options options = new BitmapFactory.Options();
@@ -80,7 +79,7 @@ public class GalleryAdapter extends BaseAdapter {
         BitmapFactory.decodeResource(res, resId, options);
 
         // Calculate inSampleSize
-        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+        options.inSampleSize = calculateInSampleSize(options);
 
         // Decode bitmap with inSampleSize set
         options.inJustDecodeBounds = false;
@@ -88,21 +87,21 @@ public class GalleryAdapter extends BaseAdapter {
     }
 
     private static int calculateInSampleSize(
-            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+            BitmapFactory.Options options) {
         // Raw height and width of image
         final int height = options.outHeight;
         final int width = options.outWidth;
         int inSampleSize = 1;
 
-        if (height > reqHeight || width > reqWidth) {
+        if (height > 0 || width > 120) {
 
             final int halfHeight = height / 2;
             final int halfWidth = width / 2;
 
             // Calculate the largest inSampleSize value that is a power of 2 and keeps both
             // height and width larger than the requested height and width.
-            while ((halfHeight / inSampleSize) >= reqHeight
-                    && (halfWidth / inSampleSize) >= reqWidth) {
+            while ((halfHeight / inSampleSize) >= 0
+                    && (halfWidth / inSampleSize) >= 120) {
                 inSampleSize *= 2;
             }
         }

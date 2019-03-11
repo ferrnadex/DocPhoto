@@ -4,9 +4,11 @@ package com.mobileteam.intersg.docphoto;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +16,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Gallery;
 import android.widget.ImageView;
+
+import java.util.Objects;
 
 public class SaleDocGallery extends AppCompatActivity {
     ImageView selectedImg;
@@ -25,7 +29,7 @@ public class SaleDocGallery extends AppCompatActivity {
 
         selectedImg = findViewById(R.id.seleccionada);
 
-        final Integer[] img = {R.mipmap.camara, R.mipmap.receipt};
+        final Integer[] img = {R.mipmap.receipt, R.mipmap.receipt, R.mipmap.rent, R.mipmap.car};
 
         gallery = findViewById(R.id.gallery);
 
@@ -70,6 +74,22 @@ public class SaleDocGallery extends AppCompatActivity {
                 return true;
             }
 
+        });
+
+        selectedImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                selectedImg.invalidate();
+                BitmapDrawable drawable = (BitmapDrawable) selectedImg.getDrawable();
+                Bitmap bitmap = drawable.getBitmap();
+
+                Intent intent = new Intent(getApplicationContext(), Preview.class);
+
+                intent.putExtra("img", bitmap);
+
+                startActivity(intent);
+            }
         });
     }
 
