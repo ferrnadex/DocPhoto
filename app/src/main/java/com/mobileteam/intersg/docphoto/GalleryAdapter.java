@@ -14,17 +14,17 @@ import android.widget.ImageView;
 
 public class GalleryAdapter extends BaseAdapter {
 
-    Context context;
-    Integer[] imagenes;
-    int background;
+    private Context context;
+    private Integer[] img;
+    private int background;
     //guardamos las imágenes reescaladas para mejorar el rendimiento ya que estas operaciones son costosas
     //se usa SparseArray siguiendo la recomendación de Android Lint
-    SparseArray<Bitmap> imagenesEscaladas = new SparseArray<Bitmap>(7);
+    private SparseArray<Bitmap> ScalableImg = new SparseArray<>(7);
 
-    public GalleryAdapter(Context context, Integer[] imagenes)
+    GalleryAdapter(Context context, Integer[] imgs)
     {
         super();
-        this.imagenes = imagenes;
+        this.img = imgs;
         this.context = context;
 
         //establecemos un marco para las imágenes (estilo por defecto proporcionado)
@@ -37,7 +37,7 @@ public class GalleryAdapter extends BaseAdapter {
     @Override
     public int getCount()
     {
-        return imagenes.length;
+        return img.length;
     }
 
     @Override
@@ -59,20 +59,20 @@ public class GalleryAdapter extends BaseAdapter {
 
         //reescalamos la imagen para evitar "java.lang.OutOfMemory" en el caso de imágenes de gran resolución
         //como es este ejemplo
-        if (imagenesEscaladas.get(position) == null)
+        if (ScalableImg.get(position) == null)
         {
-            Bitmap bitmap = decodeSampledBitmapFromResource(context.getResources(), imagenes[position], 120, 0);
-            imagenesEscaladas.put(position, bitmap);
+            Bitmap bitmap = decodeSampledBitmapFromResource(context.getResources(), img[position], 120, 0);
+            ScalableImg.put(position, bitmap);
         }
-        imagen.setImageBitmap(imagenesEscaladas.get(position));
+        imagen.setImageBitmap(ScalableImg.get(position));
         //se aplica el estilo
         imagen.setBackgroundResource(background);
 
         return imagen;
     }
     // reference: https://developer.android.com/topic/performance/graphics/load-bitmap
-    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
-                                                         int reqWidth, int reqHeight) {
+    private static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
+                                                         int reqWidth , int reqHeight) {
 
         // First decode with inJustDecodeBounds=true to check dimensions
         final BitmapFactory.Options options = new BitmapFactory.Options();
@@ -87,7 +87,7 @@ public class GalleryAdapter extends BaseAdapter {
         return BitmapFactory.decodeResource(res, resId, options);
     }
 
-    public static int calculateInSampleSize(
+    private static int calculateInSampleSize(
             BitmapFactory.Options options, int reqWidth, int reqHeight) {
         // Raw height and width of image
         final int height = options.outHeight;

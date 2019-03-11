@@ -16,26 +16,26 @@ import android.widget.Gallery;
 import android.widget.ImageView;
 
 public class SaleDocGallery extends AppCompatActivity {
-    ImageView imagenSeleccionada;
+    ImageView selectedImg;
     Gallery gallery;
 
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sale_doc_gallery);
 
-        imagenSeleccionada = (ImageView) findViewById(R.id.seleccionada);
+        selectedImg = findViewById(R.id.seleccionada);
 
-        final Integer[] imagenes = {R.mipmap.camara, R.mipmap.receipt};
+        final Integer[] img = {R.mipmap.camara, R.mipmap.receipt};
 
-        gallery = (Gallery) findViewById(R.id.gallery);
-        gallery.setAdapter(new GalleryAdapter(this, imagenes));
+        gallery = findViewById(R.id.gallery);
+
+        gallery.setAdapter(new GalleryAdapter(this, img));
         //al seleccionar una imagen, la mostramos en el centro de la pantalla a mayor tamaño
 
         //con este listener, sólo se mostrarían las imágenes sobre las que se pulsa
         gallery.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView parent, View v, int position, long id) {
-                imagenSeleccionada.setImageBitmap(decodeSampledBitmapFromResource(getResources(), imagenes[position], 300, 0));
+                selectedImg.setImageBitmap(decodeSampledBitmapFromResource(getResources(), img[position], 300, 0));
             }
 
         });
@@ -91,7 +91,7 @@ public class SaleDocGallery extends AppCompatActivity {
     }
 
     public static int calculateInSampleSize(
-            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        BitmapFactory.Options options, int reqWidth, int reqHeight) {
         // Raw height and width of image
         final int height = options.outHeight;
         final int width = options.outWidth;
