@@ -60,27 +60,33 @@ public class MainActivity extends AppCompatActivity {
 
             startActivity(intent);
 
-            //img.setImageBitmap(bitmap);*/
-            CharSequence gallerySelector[] = new CharSequence[]{"Doc Sale", "Doc Rent", "Doc Receipt"};
 
-            // reference:https://stackoverflow.com/questions/8605301/alertdialog-with-selector
-            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setTitle("Select Option");
-            builder.setItems(gallerySelector, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Log.e("value is", "" + which);
-                    switch (which) {
-                        case 0:
-                            break;
-                        case 1:
-                            break;
-                        case 2:
-                            break;
+            //img.setImageBitmap(bitmap);*/
+
+            if(data != null)
+            {
+                CharSequence gallerySelector[] = new CharSequence[]{"Doc Sale", "Doc Rent", "Doc Receipt"};
+
+                // reference:https://stackoverflow.com/questions/8605301/alertdialog-with-selector
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Select Option");
+                builder.setItems(gallerySelector, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.e("value is", "" + which);
+                        switch (which) {
+                            case 0:
+                                break;
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                        }
                     }
-                }
-            });
-            builder.show();
+                });
+                builder.show();
+            }
+
         }
         catch (Exception e)
         {
