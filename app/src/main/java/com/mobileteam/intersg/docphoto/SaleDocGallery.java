@@ -2,6 +2,8 @@ package com.mobileteam.intersg.docphoto;
 
 // reference: https://danielme.com/tip-android-25-galeria-de-imagenes-con-el-widget-gallery/
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,8 +14,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Gallery;
 import android.widget.ImageView;
-
-
 
 public class SaleDocGallery extends AppCompatActivity {
     ImageView imagenSeleccionada;
@@ -40,7 +40,39 @@ public class SaleDocGallery extends AppCompatActivity {
 
         });
 
+        gallery.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                //final String selectedItem = (String) parent.getItemAtPosition(position);
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setMessage("Do you want delete this image?").setTitle("Delete Item");
+                // Add the buttons
+                builder.setPositiveButton(R.string.y, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        // User clicked DELETE button
+
+                    }
+                });
+                builder.setNegativeButton(R.string.n, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+
+                dialog.show();
+
+                return true;
+            }
+
+        });
     }
+
     // reference: https://developer.android.com/topic/performance/graphics/load-bitmap
     public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
                                                          int reqWidth, int reqHeight) {

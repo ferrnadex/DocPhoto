@@ -21,6 +21,9 @@
         android:layout_below="@+id/gallery"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:contentDescription="@string/seleccionada" />
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="@string/seleccionada"
+       />
 
 </RelativeLayout>

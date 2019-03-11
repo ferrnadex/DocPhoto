@@ -3,15 +3,16 @@ package com.mobileteam.intersg.docphoto;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
-import android.widget.ImageView;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-    ImageView img;
     CardView cV_1;
 
     @Override
@@ -42,12 +43,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT) // android suggestion
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // try catch: for prevent the fatal error when the user go back
         try {
 
-            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+            Bitmap bitmap = (Bitmap) Objects.requireNonNull(data.getExtras()).get("data");
 
             Intent intent = new Intent(this, Preview.class);
 
