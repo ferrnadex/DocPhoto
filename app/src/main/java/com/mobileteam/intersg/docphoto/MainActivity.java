@@ -18,6 +18,8 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     CardView cV_1;
+    CardView cV_2;
+    CardView cV_3;
     CardView cV_4;
 
     @Override
@@ -31,6 +33,26 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SaleDocGallery.class);
+                startActivity(intent);
+            }
+        });
+
+        cV_2 = findViewById(R.id.rent_doc_card);
+
+        cV_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RentDocGallery.class);
+                startActivity(intent);
+            }
+        });
+
+        cV_3 = findViewById(R.id.receipt_doc_card);
+
+        cV_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ReceiptDocGallery.class);
                 startActivity(intent);
             }
         });
